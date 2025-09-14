@@ -1,0 +1,154 @@
+# Visual Studio 项目专用 .gitignore 文件
+
+## 忽略 Visual Studio 用户特定文件 ##
+*.user
+*.userosscache
+*.sln.docstates
+*.suo
+*.sln.GhostDoc.xml
+
+# 用户特定文件 (MOC/UI 文件等)
+*.vcxproj.user
+*.vcxproj.filters
+*.vcxproj.user
+
+## 忽略生成结果 ##
+[Bb]in/
+[Dd]ebug/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]uild/
+[Bb]uildOutput/
+
+# Visual Studio 2015/2017 缓存/选项目录
+.vs/
+# 取消注释如果你有项目特定的 .vs 文件夹 (因为 vs 文件夹可以存在于多个项目中)
+#!.vs/
+
+## 忽略编译生成的文件 ##
+*.obj
+*.pch
+*.pdb
+*.ilk
+*.tlb
+*.tlh
+*.tmp
+*.log
+*.idb
+*.ilk
+*.meta
+
+# 可执行文件
+*.exe
+*.dll
+*.lib
+*.winmd
+*.appx
+
+# 打包目录
+[Bb]uild[Pp]ackages/
+
+## 忽略 Visual Studio 临时文件 ##
+_ReSharper.*
+*.resharper
+[Tt]est[Rr]esult*
+
+# MSTest 测试结果
+*.trx
+
+## 忽略 NuGet 包目录 ##
+[NuPp]ackages/
+
+# NuGet 符号包 (弃用 https://github.com/NuGet/Home/issues/4320)
+*.snupkg
+
+# 除了 build/ 之外的所有包文件夹，因为 NuGet 使用 pack 来生成包
+!**/[Pp]ackages/build/
+
+# 除了 build/ 之外的所有包文件夹，因为 NuGet 使用 pack 来生成包
+!**/[Pp]ackages/build/
+
+# 忽略除 repository.config 之外的所有包配置文件
+!**/[Pp]ackages/repositories.config
+
+## 忽略其他文件 ##
+*.[Cc]ache
+*.opendb
+*.opensdf
+
+# Windows 图像缓存
+Thumbs.db
+ehthumbs.db
+
+# 文件夹配置文件
+Desktop.ini
+
+# 内容来自 www.gitignore.io 的 VisualStudio 部分
+
+# 项目文件，但保留解决方案文件
+*.vcxproj
+*.vcxproj.filters
+
+# 保留解决方案文件
+!*.sln
+
+# 应用程序配置文件
+*.app.config
+*.web.config
+
+# NuGet 配置文件
+nuget.config
+
+# 保留包引用文件
+!packages.config
+
+# 除根目录外的所有 .suo 和 .user 文件
+**/*.suo
+**/*.user
+!*.suo
+!*.user
+
+# 除根目录外的所有 .sln.docstates 文件
+**/*.sln.docstates
+!*.sln.docstates
+
+# 性能日志
+*.psess
+*.vsp
+*.vspx
+
+# Visual Studio 分析器文件
+*.sarif
+
+# 代码覆盖率结果
+*.coverage
+*.coveragexml
+
+# NCrunch
+_NCrunch_*
+.*crunch*.local.xml
+
+# 预编译头文件
+*.pch
+
+# 预编译头文件的编译输出
+*.pch.tmp
+
+# 预编译头文件的编译输出
+*.pch.tmp
+
+# 预编译头文件的编译输出
+*.pch.tmp
+
+# 预编译头文件的编译输出
+*.pch.tmp
+
+# 预编译 Web
+pubxml/
+*.pubxml

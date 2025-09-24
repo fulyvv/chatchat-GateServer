@@ -1,5 +1,6 @@
 #include "LogicSystem.h"
 #include "HttpConnection.h"
+#include "VarifyGrpcClient.h"
 
 bool LogicSystem::HandleGet(std::string path, std::shared_ptr<HttpConnection> con)
 {
@@ -12,7 +13,7 @@ bool LogicSystem::HandleGet(std::string path, std::shared_ptr<HttpConnection> co
 }
 
 bool LogicSystem::HandlePost(std::string path, std::shared_ptr<HttpConnection> con)
-{
+{ 
     if (_post_handlers.find(path) == _post_handlers.end()) {
         return false;
     }
@@ -59,6 +60,8 @@ LogicSystem::LogicSystem() {
         }
 
 		auto email = src_root["email"].asString();
+		//  调用grpc接口,获取验证码
+		GetVarifyRsp rsp = VarifyGrpcClient::GetInstance()->GetVarifyCode(email);
         if (!src_root.isMember("email")) {
             std::cout << "Failed to parse" << std::endl;
             root["error"] = ErrorCode::Error_Json;
@@ -68,7 +71,7 @@ LogicSystem::LogicSystem() {
         }
 
         std::cout << "email is " << email << std::endl;
-        root["error"] = 0;
+        root["error"] = rsp.error();
         root["email"] = src_root["email"];
         std::string jsonstr = root.toStyledString();
         beast::ostream(connection->_response.body()) << jsonstr;

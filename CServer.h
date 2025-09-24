@@ -1,14 +1,14 @@
-#pragma once
+ï»¿#pragma once
 #include "const.h"
+#include "AsioIOServicePool.h"
 
 class CServer : public std::enable_shared_from_this<CServer>
 {
 public:
 	CServer(boost::asio::io_context& ioc, unsigned short& port);
-	void Start(); //·şÎñÆ÷Æô¶¯
+	void Start(); //æœåŠ¡å™¨å¯åŠ¨
 private:
-	tcp::acceptor _acceptor; //¼àÌıÆ÷
+	tcp::acceptor _acceptor; //ç›‘å¬å™¨
 	net::io_context& _ioc;
-	tcp::socket _socket;
 };
 

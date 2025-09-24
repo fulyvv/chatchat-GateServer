@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <boost/beast/http.hpp>
 #include <boost/beast.hpp>
@@ -16,6 +16,11 @@
 #include <string>
 #include <iostream>
 #include <unordered_map>
+#include <atomic>
+#include <queue>
+#include <thread>
+#include <mutex>
+#include <condition_variable>
 
 namespace beast = boost::beast;         // from <boost/beast.hpp>
 namespace http = beast::http;           // from <boost/beast/http.hpp>
@@ -27,6 +32,3 @@ enum ErrorCode {
 	Error_Json = 1001,
 	RPCFailed = 1002,
 };
-
-class ConfigMgr;
-extern ConfigMgr gCfgMgr;

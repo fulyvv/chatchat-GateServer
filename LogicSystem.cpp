@@ -1,4 +1,4 @@
-#include "LogicSystem.h"
+ï»¿#include "LogicSystem.h"
 #include "HttpConnection.h"
 #include "VarifyGrpcClient.h"
 
@@ -60,7 +60,7 @@ LogicSystem::LogicSystem() {
         }
 
 		auto email = src_root["email"].asString();
-		//  µ÷ÓÃgrpc½Ó¿Ú,»ñÈ¡ÑéÖ¤Âë
+		//  è°ƒç”¨grpcæŽ¥å£,èŽ·å–éªŒè¯ç 
 		GetVarifyRsp rsp = VarifyGrpcClient::GetInstance()->GetVarifyCode(email);
         if (!src_root.isMember("email")) {
             std::cout << "Failed to parse" << std::endl;

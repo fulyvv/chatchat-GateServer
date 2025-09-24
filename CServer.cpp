@@ -1,26 +1,29 @@
-#include "CServer.h"
+ï»¿#include "CServer.h"
 #include "HttpConnection.h"
 
 CServer::CServer(boost::asio::io_context& ioc, unsigned short& port):
-	_ioc(ioc), _acceptor(ioc, tcp::endpoint(tcp::v4(), port)), _socket(ioc)
+	_ioc(ioc), _acceptor(ioc, tcp::endpoint(tcp::v4(), port))
 {
 
 }
 
 void CServer::Start()
 {
-	auto self = shared_from_this(); //Éú³ÉÒ»¸öshared_ptr¶ÔÏó
-	_acceptor.async_accept(_socket, [self](beast::error_code ec){
+	auto self = shared_from_this(); //ç”Ÿæˆä¸€ä¸ªshared_ptrå¯¹è±¡
+	auto& io_context = AsioIOServicePool::GetInstance()->GetIOService();
+	std::shared_ptr<HttpConnection> new_con = std::make_shared<HttpConnection>(io_context);
+	_acceptor.async_accept(new_con->GetSocket(), [self, new_con](beast::error_code ec) {
 			try {
-				//³ö´í·ÅÆúµ±Ç°Á¬½Ó£¬¼ÌĞø¼àÌıÆäËûÁ¬½Ó
+				//å‡ºé”™æ”¾å¼ƒå½“å‰è¿æ¥ï¼Œç»§ç»­ç›‘å¬å…¶ä»–è¿æ¥
 				if (ec){
 					self->Start();
 					return;
 				}
 
-				//´´½¨ĞÂÁ¬½Ó£¬²¢ÇÒ´´½¨HttpConnectionÀà¹ÜÀíÕâ¸öÁ¬½Ó
-				std::make_shared<HttpConnection>(std::move(self->_socket))->Start();
-				//¼ÌĞø¼àÌıÆäËûÁ¬½Ó
+				//åˆ›å»ºæ–°è¿æ¥ï¼Œå¹¶ä¸”åˆ›å»ºHttpConnectionç±»ç®¡ç†è¿™ä¸ªè¿æ¥
+				//std::make_shared<HttpConnection>(std::move(self->_socket))->Start();
+				new_con->Start();
+				//ç»§ç»­ç›‘å¬å…¶ä»–è¿æ¥
 				self->Start();
 			}
 			catch (std::exception& exp){

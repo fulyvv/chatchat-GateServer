@@ -1,16 +1,16 @@
-#pragma once
+ï»¿#pragma once
 #include "const.h"
 
 struct SectionInfo {
 	SectionInfo() {};
 	~SectionInfo() { _section_data.clear(); };
 
-	//¿½±´¹¹Ôìº¯Êı
+	//æ‹·è´æ„é€ å‡½æ•°
 	SectionInfo(const SectionInfo& other) {
 		_section_data = other._section_data;
 	}
 
-	//¸³Öµ¹¹Ôìº¯Êı
+	//èµ‹å€¼æ„é€ å‡½æ•°
 	SectionInfo& operator=(const SectionInfo& other) {
 		if (this != &other) {
 			_section_data = other._section_data;
@@ -20,15 +20,15 @@ struct SectionInfo {
 
 	std::map<std::string, std::string> _section_data;
 
-	//ÖØÔØ[]Ô¶Ëã·û
+	//é‡è½½[]è¿œç®—ç¬¦
 	std::string operator[](const std::string& key) {
 		if (_section_data.find(key) == _section_data.end()) {
 			return "";
 		}
 		return _section_data[key];
 	}
-
 };
+
 class ConfigMgr
 {
 public:
@@ -44,16 +44,19 @@ public:
 		return _config_map[section];
 	}
 
-	ConfigMgr();
-
-	//¿½±´¹¹Ôì
+	//æ‹·è´æ„é€ 
 	ConfigMgr(const ConfigMgr& other);
 
-	//¿½±´¸³Öµ
+	//æ‹·è´èµ‹å€¼
 	ConfigMgr& operator=(const ConfigMgr& other);
 
+	static ConfigMgr& Inst()
+	{
+		static ConfigMgr cfg_mgr;
+		return cfg_mgr;
+	}
+
 private:
-	std::map<std::string, SectionInfo> _config_map;//sectionÃû×Ö,sectionĞÅÏ¢
-
+	ConfigMgr();
+	std::map<std::string, SectionInfo> _config_map;//sectionåå­—,sectionä¿¡æ¯
 };
-

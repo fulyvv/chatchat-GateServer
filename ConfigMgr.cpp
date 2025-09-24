@@ -1,13 +1,13 @@
-#include "ConfigMgr.h"
+ï»¿#include "ConfigMgr.h"
 
 ConfigMgr::ConfigMgr()
 {
 	boost::filesystem::path curr_path = boost::filesystem::current_path();
-	//Æ´½ÓÂ·¾¶
+	//æ‹¼æŽ¥è·¯å¾„
 	boost::filesystem::path config_path = curr_path / "config.ini";
 	std::cout << "Config path is " << config_path << std::endl;
 
-	//´¦ÀíiniÎÄ¼þ
+	//å¤„ç†iniæ–‡ä»¶
 	boost::property_tree::ptree pt;
 	boost::property_tree::read_ini(config_path.string(), pt);
 
@@ -25,7 +25,7 @@ ConfigMgr::ConfigMgr()
 		_config_map[section_name] = sectionInfo;
 	}
 
-	// Êä³öËùÓÐµÄsectionºÍkey-value¶Ô  
+	// è¾“å‡ºæ‰€æœ‰çš„sectionå’Œkey-valueå¯¹  
 	for (const auto& section_entry : _config_map) {
 		const std::string& section_name = section_entry.first;
 		SectionInfo section_config = section_entry.second;
@@ -37,12 +37,12 @@ ConfigMgr::ConfigMgr()
 
 }
 
-//¿½±´¹¹Ôì
+//æ‹·è´æž„é€ 
 ConfigMgr::ConfigMgr(const ConfigMgr& other) {
 	_config_map = other._config_map;
 };
 
-//¿½±´¸³Öµ
+//æ‹·è´èµ‹å€¼
 ConfigMgr& ConfigMgr::operator=(const ConfigMgr& other) {
 	if (this != &other) {
 		_config_map = other._config_map;

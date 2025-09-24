@@ -7,7 +7,7 @@
 
 int main()
 {
-	ConfigMgr gCfgMgr; //全局配置管理器
+	auto& gCfgMgr = ConfigMgr::Inst(); //全局配置管理器
 	std::string gate_port_str = gCfgMgr["GateServer"]["Port"];
 	unsigned short gate_port = atoi(gate_port_str.c_str());
     try
